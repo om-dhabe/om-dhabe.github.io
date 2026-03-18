@@ -15,6 +15,7 @@
     initCustomCursor();
     initNavigation();
     initTypingEffect();
+    initLogoTypingEffect();
     initGSAPAnimations();
     initStatCounters();
     initSkillBars();
@@ -241,6 +242,45 @@
     }
 
     window.addEventListener('scroll', updateActiveLink);
+  }
+
+  /* ══════════════════════════════════════════════════════════
+     LOGO TYPING EFFECT
+     ══════════════════════════════════════════════════════════ */
+  function initLogoTypingEffect() {
+    const el = document.getElementById('logo-typed-text');
+    if (!el) return;
+
+    const text = '< OM DHABE />';
+    let charIndex = 0;
+    let deleting = false;
+    let delay = 150;
+
+    function type() {
+      if (!deleting) {
+        el.textContent = text.substring(0, charIndex + 1);
+        charIndex++;
+        delay = 100 + Math.random() * 50;
+
+        if (charIndex === text.length) {
+          delay = 4000;
+          deleting = true;
+        }
+      } else {
+        el.textContent = text.substring(0, charIndex - 1);
+        charIndex--;
+        delay = 50;
+
+        if (charIndex === 0) {
+          deleting = false;
+          delay = 1000;
+        }
+      }
+
+      setTimeout(type, delay);
+    }
+
+    setTimeout(type, 1000);
   }
 
   /* ══════════════════════════════════════════════════════════

@@ -188,6 +188,8 @@ strong {
   letter-spacing: -0.02em;
   color: var(--text-primary);
   transition: color 0.3s;
+  min-width: 180px;
+  display: inline-block;
 }
 
 .logo-bracket {
@@ -1796,5 +1798,27 @@ body .footer {
     backdrop-filter: blur(16px);
     -webkit-backdrop-filter: blur(16px);
     box-shadow: 0 4px 20px rgba(0, 0, 0, 0.2);
+  }
+}
+
+/* ── Logo Typing Cursor ── */
+.logo-cursor {
+  display: inline-block;
+  color: var(--accent-1);
+  font-weight: 300;
+  animation: logoBlink 1s step-end infinite;
+  margin-left: 2px;
+  vertical-align: text-bottom;
+}
+
+@keyframes logoBlink {
+
+  0%,
+  100% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0;
   }
 }

@@ -258,7 +258,6 @@
 
     function type() {
       if (!deleting) {
-        el.textContent = text.substring(0, charIndex + 1);
         charIndex++;
         delay = 100 + Math.random() * 50;
 
@@ -267,7 +266,6 @@
           deleting = true;
         }
       } else {
-        el.textContent = text.substring(0, charIndex - 1);
         charIndex--;
         delay = 50;
 
@@ -276,6 +274,14 @@
           delay = 1000;
         }
       }
+
+      let currentText = text.substring(0, charIndex);
+      let safeHtml = currentText.replace(/</g, '&lt;').replace(/>/g, '&gt;');
+
+      safeHtml = safeHtml.replace('&lt;', '<span class="logo-bracket">&lt;</span>');
+      safeHtml = safeHtml.replace('/&gt;', '<span class="logo-bracket">/&gt;</span>');
+
+      el.innerHTML = safeHtml;
 
       setTimeout(type, delay);
     }
